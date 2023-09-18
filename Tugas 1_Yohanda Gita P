@@ -1,0 +1,33 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+def f(x):
+    return x**3 - 2*x + 1
+
+a = float(input("Masukkan nilai a: "))
+b = float(input("Masukkan nilai b: "))
+toleransi = float(input("Masukkan toleransi galat: "))
+n_iter = int(input("Masukkan jumlah maksimum iterasi: "))
+
+iterasi = []
+akar = []
+
+for i in range(n_iter):
+    c = (a + b) / 2
+    iterasi.append(i)
+    akar.append(c)
+    if abs(f(c)) < toleransi:
+        break
+    if f(c) * f(a) < 0:
+        b = c
+    else:
+        a = c
+
+print("Akar yang ditemukan:", akar[-1])
+
+plt.plot(iterasi, akar, marker='o')
+plt.xlabel("Iterasi")
+plt.ylabel("Akar")
+plt.title("Konvergensi Metode Bagi Dua")
+plt.grid(True)
+plt.show()
